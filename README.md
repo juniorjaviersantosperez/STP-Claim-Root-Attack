@@ -1,12 +1,21 @@
-# 🔴 STP Claim Root Attack — Root Bridge Hijack
+# STP Claim Root Attack — Root Bridge Hijack
 
-**Autor:** Junior Javier Santos Perez  
-**Matrícula:** 2024-1599  
-**Materia:** Seguridad en Redes  
+Autor: Junior Javier Santos Perez
+
+Matrícula: 2024-1599
+
+Herramienta: stp_root_claim.py
+
+Plataforma de laboratorio: GNS3 + Kali Linux 2025.3
+
+Link video: https://www.youtube.com/watch?v=Mv7JZszYmu4&t=2s 
+
+Enlace GitHub: https://github.com/juniorjaviersantosperez/STP-Claim-Root-Attack 
+
 
 ---
 
-## 📋 Descripción
+## Descripción
 
 Script de ataque **STP Root Claim** implementado en Python con raw sockets. Envía BPDUs de configuración con prioridad `0` hacia los switches de la red, forzándolos a ceder la posición de Root Bridge al atacante. Una vez que el atacante se convierte en Root Bridge, todo el tráfico L2 de la red pasa por él (Man in the Middle).
 
@@ -168,25 +177,6 @@ Switch(config-if)# spanning-tree guard root
 
 ---
 
-## 📁 Estructura del Repositorio
-
-```
-stp-root-claim/
-├── stp_root_claim.py
-├── README.md
-├── Documentacion_STP_Root_Claim_JuniorSantos_2024-1599.docx
-└── capturas/
-    ├── IMAGEN1.png   ← Topología GNS3
-    ├── IMAGEN2.png   ← Script corriendo — 526 BPDUs
-    ├── IMAGEN3.png   ← tcpdump BPDUs en tiempo real
-    ├── IMAGEN4.png   ← Swich-2 antes y después del ataque
-    ├── IMAGEN5.png   ← ip a — MAC del atacante
-    ├── IMAGEN6.png   ← Swich-3 show spanning-tree
-    ├── IMAGEN7.png   ← Swich-1 show spanning-tree
-    └── IMAGEN8.png   ← Contramedida BPDU Guard
-```
-
----
 
 ## ⚠️ Disclaimer
 
