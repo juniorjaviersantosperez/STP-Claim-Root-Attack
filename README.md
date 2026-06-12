@@ -25,7 +25,7 @@ Script de ataque **STP Root Claim** implementado en Python con raw sockets. Env�
 
 > Topología implementada en **GNS3** — Red `10.0.99.0/24`
 
-**IMAGEN 1**
+![Topología](capturas/IMAGEN1.png)
 
 | Nodo | Rol | IP | Interfaz |
 |------|-----|----|----------|
@@ -61,7 +61,8 @@ El script construye BPDUs STP en **raw bytes** directamente sobre un socket `AF_
 
 **MAC del atacante verificada:**
 
-**IMAGEN 5**
+
+![MAC del atacante](capturas/IMAGEN5.png)
 
 ---
 
@@ -93,7 +94,7 @@ sudo python3 stp_root_claim.py -i eth0 -p 0 -t 0.5
 
 El script envía **526 BPDUs** en 263 segundos anunciando al atacante como Root Bridge con prioridad `0` y MAC `00:0c:29:b0:f6:1c`:
 
-**IMAGEN 2**
+![Ejecución del ataque](capturas/IMAGEN2.png)
 
 ---
 
@@ -107,7 +108,8 @@ sudo tcpdump -i eth0 -e -nn ether dst 01:80:c2:00:00:00
 
 Se observan los BPDUs Configuration y TCN saliendo continuamente desde la MAC del atacante hacia la dirección multicast STP `01:80:c2:00:00:00`:
 
-**IMAGEN 3**
+
+![Tcpdump mostrando BPDUs](capturas/IMAGEN3.png)
 
 ---
 
@@ -115,11 +117,11 @@ Se observan los BPDUs Configuration y TCN saliendo continuamente desde la MAC de
 
 **Swich-1 antes del ataque** — Root Bridge legítimo con prioridad `32769`:
 
-**IMAGEN 7**
+![Swich-1 antes del ataque](capturas/IMAGEN7.png)
 
 **Swich-3 antes del ataque** — Root Bridge legítimo con prioridad `32769`:
 
-**IMAGEN 6**
+![Swich-3 antes del ataque](capturas/IMAGEN6.png)
 
 ---
 
@@ -129,7 +131,7 @@ Se observan los BPDUs Configuration y TCN saliendo continuamente desde la MAC de
 
 **DESPUÉS** del ataque — Root ID cambia a prioridad `0` y dirección `000c.29b0.f61c` (MAC del atacante):
 
-**IMAGEN 4**
+![Swich-2 después del ataque](capturas/IMAGEN4.png)
 
 ```
 Root ID   Priority   0
@@ -148,7 +150,7 @@ Root ID   Priority   0
 
 BPDU Guard deshabilita automáticamente el puerto si recibe un BPDU no autorizado, bloqueando el ataque inmediatamente:
 
-**IMAGEN 8**
+![BPDU Guard](capturas/IMAGEN8.png)
 
 ```
 Switch(config)# interface GigabitEthernet0/0
